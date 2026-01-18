@@ -3,7 +3,7 @@
 ### Modélisation
 - [ ] Modélisation des shurikens - Suussonic
 - [ ] Modélisation d'une hache - Mathieu Bertin
-- [X] Modélisation d'un kunai - Mathieu Bertin
+- [x] Modélisation d'un kunai - Mathieu Bertin
 - [ ] Modélisation d'une hache à deux mains - Mathieu Bertin
 - [ ] Modélisation d'une arène - Suussonic
 - [ ] Modélisation d'un de la carte d'un niveau
