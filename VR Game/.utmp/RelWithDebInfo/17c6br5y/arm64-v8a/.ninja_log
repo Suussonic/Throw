@@ -1,10 +1,19 @@
 # ninja log v5
 31	1285	7927013220020867	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	a36eed97eaa8ffb6
 25	1297	7927013220403058	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	bb22b3865a2e5d61
-0	1307	7927013220568634	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7b3bcd2986ba151d
-38	1326	7927013220774528	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8c793e026336fc0d
-13	1418	7927013221693167	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4e6c363c935aba2d
 43	1513	7927013222635112	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e2f2564d2e20c493
+0	1307	7927013220568634	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7b3bcd2986ba151d
+13	1418	7927013221693167	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4e6c363c935aba2d
+38	1326	7927013220774528	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8c793e026336fc0d
 19	1610	7927013223582870	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	45a2cf1a00da4bc0
 8	1672	7927013224109205	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	62f974d95f2b496a
 1673	1879	7927013226123758	C:/HA/UNITY/Throw/VR Game/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/17c6br5y/obj/arm64-v8a/libgame.so	1394a04781ce1a95
+34	1282	7930806916011496	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	bb22b3865a2e5d61
+15	1283	7930806916031614	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	a36eed97eaa8ffb6
+10	1296	7930806916182374	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7b3bcd2986ba151d
+24	1309	7930806916307899	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8c793e026336fc0d
+4	1359	7930806916784421	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4e6c363c935aba2d
+29	1501	7930806918195066	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	45a2cf1a00da4bc0
+40	1503	7930806918210129	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e2f2564d2e20c493
+19	1578	7930806918963687	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	62f974d95f2b496a
+1578	1731	7930806920529299	C:/HA/UNITY/Throw/VR Game/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/17c6br5y/obj/arm64-v8a/libgame.so	1394a04781ce1a95
