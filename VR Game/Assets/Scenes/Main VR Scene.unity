@@ -2515,8 +2515,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5546408199444923372, guid: b5101e688c3df69409185c675c664f73, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6785670002420711576}
   m_SourcePrefab: {fileID: 100100000, guid: b5101e688c3df69409185c675c664f73, type: 3}
+--- !u!1 &6785670002420711575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5546408199444923372, guid: b5101e688c3df69409185c675c664f73, type: 3}
+  m_PrefabInstance: {fileID: 6785670002420711574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6785670002420711576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785670002420711575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c555f0b2b49861e4d840f539f7b6e4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KunaiThrow
+  throwVelocity: 20
+  rotationVelocity: 10
+  gravityScale: 0
+  throwThreshold: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
