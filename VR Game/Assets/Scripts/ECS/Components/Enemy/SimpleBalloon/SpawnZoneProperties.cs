@@ -10,7 +10,6 @@ namespace ECS.Components
         public Entity EnemySpawnPrefab;
         public Entity BasicBalloonPrefab;
         public float BalloonSpawnRate;
-        public float BalloonRiseRate;
     }
 
     public struct BalloonSpawnTimer : IComponentData

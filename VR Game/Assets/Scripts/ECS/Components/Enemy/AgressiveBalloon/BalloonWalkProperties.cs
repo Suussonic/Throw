@@ -8,7 +8,7 @@ namespace ECS.Components.Balloon
         public float WalkSpeed;
     }
     
-    public struct BalloonHeading : IComponentData
+    public struct BalloonHeading : IComponentData , IEnableableComponent
     {
         public float3 Value;
     }
