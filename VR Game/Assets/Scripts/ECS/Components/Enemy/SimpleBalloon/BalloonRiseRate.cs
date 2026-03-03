@@ -2,7 +2,7 @@
 
 namespace ECS.Components
 {
-    public struct BalloonRiseRate : IComponentData
+    public struct BalloonRiseRate : IComponentData, IEnableableComponent
     {
         public float Value;
         public float TargetHeight;
