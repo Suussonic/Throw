@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main VR Scene.unity
     guid: 9503207684b3d1249b3bff33b5d5dd17
+  - enabled: 1
+    path: Assets/Scenes/StaticBalloonLevel.unity
+    guid: b81d5b4b9c31daf41ad2d40df02cc61c
+  - enabled: 1
+    path: Assets/Scenes/AgressiveBalloonLevel.unity
+    guid: 7cf1cc356df7f054e8399a5a10e7bfa1
   m_configObjects:
     UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: 4d1b7fe9dd94f484a9d0432060474fd2, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

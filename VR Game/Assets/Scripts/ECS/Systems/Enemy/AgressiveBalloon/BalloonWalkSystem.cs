@@ -1,6 +1,6 @@
 ﻿using ECS.Authorings.Enemy.Balloon;
-using ECS.Components;
 using ECS.Components.Balloon;
+using ECS.Components.Enemy.AgressiveBalloon;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -19,11 +19,7 @@ namespace ECS.Systems.Enemy.AgressiveBalloon
             state.RequireForUpdate<BalloonTargetPosition>();
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
         }
-
-        public void OnDestroy(ref SystemState state)
-        {
-        }
-
+        
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
@@ -57,7 +53,7 @@ namespace ECS.Systems.Enemy.AgressiveBalloon
             
             if (balloon.IsInStoppingRange(balloon.Heading, StopDistanceSq))
             {
-                ECB.DestroyEntity(sortKey, balloon.Entity);
+                ECB.AddComponent<BalloonReachedTarget>(sortKey, balloon.Entity);
             }
         }
     }
