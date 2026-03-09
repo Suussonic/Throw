@@ -2644,6 +2644,7 @@ MonoBehaviour:
   rotationVelocity: 10
   gravityScale: 0
   throwThreshold: 1.5
+<<<<<<< HEAD
 --- !u!114 &6785670002420711577 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8123509748467701186, guid: b5101e688c3df69409185c675c664f73, type: 3}
@@ -2655,6 +2656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
+=======
+>>>>>>> c2a4585c3461305ca7cf014080a87f9555058eef
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
