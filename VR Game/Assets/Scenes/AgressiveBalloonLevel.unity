@@ -178,6 +178,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2747131550637254265, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 319992179}
+    - targetCorrespondingSourceObject: {fileID: 2747131550637254265, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 319992180}
+    - targetCorrespondingSourceObject: {fileID: 2747131550637254265, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 319992185}
   m_SourcePrefab: {fileID: 100100000, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
 --- !u!1 &319992178 stripped
 GameObject:
@@ -196,6 +202,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c11a1bc982b4f9db8d17f949b29c6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ECS.Authorings.Enemy.Balloon.BalloonTargetAuthoring
+--- !u!114 &319992180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319992178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f025b5206444178b4b34789ad332c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealth
+  maxHealth: 100
+--- !u!114 &319992185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319992178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf4722882354aaab70d870caa13c924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealthRef
 --- !u!1 &636335478
 GameObject:
   m_ObjectHideFlags: 0
