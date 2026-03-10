@@ -661,7 +661,7 @@ MonoBehaviour:
   m_InteractableHoverMeshMaterial: {fileID: 0}
   m_InteractableCantHoverMeshMaterial: {fileID: 0}
   m_SocketActive: 1
-  m_InteractableHoverScale: 1
+  m_InteractableHoverScale: 0.43
   m_RecycleDelayTime: 0.1
   m_HoverSocketSnapping: 0
   m_SocketSnappingRadius: 0.1
@@ -2621,29 +2621,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5546408199444923372, guid: b5101e688c3df69409185c675c664f73, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6785670002420711576}
+      addedObject: {fileID: 6785670002420711578}
   m_SourcePrefab: {fileID: 100100000, guid: b5101e688c3df69409185c675c664f73, type: 3}
 --- !u!1 &6785670002420711575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5546408199444923372, guid: b5101e688c3df69409185c675c664f73, type: 3}
   m_PrefabInstance: {fileID: 6785670002420711574}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6785670002420711576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785670002420711575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c555f0b2b49861e4d840f539f7b6e4a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KunaiThrow
-  throwVelocity: 20
-  rotationVelocity: 10
-  gravityScale: 0
-  throwThreshold: 1.5
 --- !u!114 &6785670002420711577 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8123509748467701186, guid: b5101e688c3df69409185c675c664f73, type: 3}
@@ -2655,6 +2639,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
+--- !u!114 &6785670002420711578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785670002420711575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c231e104f5314a14399a5fba1d64605c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  throwVelocity: 20
+  rotationVelocity: 10
+  gravityScale: 0
+  throwThreshold: 1.5
+  returnDelay: 3
+  returnSpeed: 5
+  homeSocket: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
