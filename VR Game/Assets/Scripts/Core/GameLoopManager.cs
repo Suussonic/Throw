@@ -6,17 +6,44 @@ namespace Core
 {
     public class GameLoopManager : MonoBehaviour
     {
+        public static GameLoopManager Instance {get; private set; }
         [SerializeField] private GameStateSO gameState;
+        
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
 
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        
         private void Start()
         {
             gameState.ChangeState(GameState.MainMenu);
+        }
+        
+        private void ResetECSWorld()
+        {
+            // Force le cleanup des entités ECS
+            var world = Unity.Entities.World.DefaultGameObjectInjectionWorld;
+            if (world != null && world.IsCreated)
+            {
+                world.Dispose();
+                Unity.Entities.DefaultWorldInitialization.Initialize("Default World");
+            }
         }
 
         public void StartPassivLevel()
         {
             gameState.ChangeLevel(LevelType.PassivLevel);
             gameState.ChangeState(GameState.Playing);
+            
+            ResetECSWorld();
+            
             SceneManager.LoadScene(1);
         }
 
@@ -24,6 +51,9 @@ namespace Core
         {
             gameState.ChangeLevel(LevelType.AgressiveLevel);
             gameState.ChangeState(GameState.Playing);
+            
+            ResetECSWorld();
+            
             SceneManager.LoadScene(2);
         }
 
@@ -74,6 +104,9 @@ namespace Core
         {
             Time.timeScale = 1f;
             gameState.ChangeState(GameState.MainMenu);
+            
+            ResetECSWorld();
+            
             SceneManager.LoadScene(0);
         }
 
