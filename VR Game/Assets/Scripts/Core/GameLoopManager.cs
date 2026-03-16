@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections; // Nécessaire pour les Coroutines
 
 namespace Core
 {
     public class GameLoopManager : MonoBehaviour
     {
-        public static GameLoopManager Instance {get; private set; }
+        public static GameLoopManager Instance { get; private set; }
         [SerializeField] private GameStateSO gameState;
-        
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -33,28 +34,33 @@ namespace Core
             if (world != null && world.IsCreated)
             {
                 world.Dispose();
+                // On recrée un monde par défaut propre
                 Unity.Entities.DefaultWorldInitialization.Initialize("Default World");
             }
         }
 
         public void StartPassivLevel()
         {
-            gameState.ChangeLevel(LevelType.PassivLevel);
-            gameState.ChangeState(GameState.Playing);
-            
-            ResetECSWorld();
-            
-            SceneManager.LoadScene(1);
+            StartCoroutine(LoadLevelRoutine(1, LevelType.PassivLevel));
         }
 
         public void StartAgressiveLevel()
         {
-            gameState.ChangeLevel(LevelType.AgressiveLevel);
+            StartCoroutine(LoadLevelRoutine(2, LevelType.AgressiveLevel));
+        }
+
+        // Coroutine générique pour charger un niveau
+        private IEnumerator LoadLevelRoutine(int sceneIndex, LevelType levelType)
+        {
+            // Attend une frame pour laisser les systèmes ECS finir leur mise à jour
+            yield return null;
+
+            gameState.ChangeLevel(levelType);
             gameState.ChangeState(GameState.Playing);
             
             ResetECSWorld();
             
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(sceneIndex);
         }
 
         private void Update()
@@ -102,6 +108,15 @@ namespace Core
 
         public void ReturnToMenu()
         {
+            // Pareil ici, on lance la coroutine au lieu de le faire directement
+            StartCoroutine(ReturnToMenuRoutine());
+        }
+
+        private IEnumerator ReturnToMenuRoutine()
+        {
+            // IMPORTANT : On attend que la frame ECS soit finie
+            yield return null;
+
             Time.timeScale = 1f;
             gameState.ChangeState(GameState.MainMenu);
             
