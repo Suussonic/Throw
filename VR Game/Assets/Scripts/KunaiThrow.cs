@@ -79,4 +79,8 @@ public class KunaiThrow : MonoBehaviour
             grabInteractable.selectExited.RemoveListener(OnRelease);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5eafe34 (fix kunai throw script)
