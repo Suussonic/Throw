@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+
+public class KunaiThrow : MonoBehaviour
+{
+    [SerializeField] public float throwVelocity = 20f; // Vitesse du lancer
+    [SerializeField] public float rotationVelocity = 10f; // Vitesse de rotation (axe Y)
+    [SerializeField] public float gravityScale = 0f; // Gravité (0 pour lancer droit)
+    [SerializeField] public float throwThreshold = 1.5f; // Seuil de vélocité pour déclencher le lancer
+
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
+=======
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -18,17 +34,34 @@ public class KunaiThrow : MonoBehaviour
     [SerializeField] public XRSocketInteractor homeSocket;   // Le socket qui possède le kunai
 
     private XRGrabInteractable grabInteractable;
+<<<<<<< HEAD
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
     private Rigidbody rb;
     private Vector3 lastHandPosition;
     private Vector3 lastHandVelocity;
     private Transform handTransform;
     private bool hasBeenThrown = false;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+    void Start()
+    {
+        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+=======
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
     private Coroutine returnCoroutine;
     private bool isReturning = false;
 
     void Start()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
+<<<<<<< HEAD
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
         rb = GetComponent<Rigidbody>();
 
         if (grabInteractable != null)
@@ -40,6 +73,11 @@ public class KunaiThrow : MonoBehaviour
 
     void OnGrab(SelectEnterEventArgs args)
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
         // Annuler le retour si le joueur attrape le kunai
         if (returnCoroutine != null)
         {
@@ -48,10 +86,21 @@ public class KunaiThrow : MonoBehaviour
         }
         isReturning = false;
 
+<<<<<<< HEAD
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
         handTransform = args.interactorObject.transform;
         lastHandPosition = handTransform.position;
         lastHandVelocity = Vector3.zero;
         hasBeenThrown = false;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        // Comportement normal du XRGrabInteractable pendant la saisie
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
         grabInteractable.throwOnDetach = true;
     }
 
@@ -63,6 +112,11 @@ public class KunaiThrow : MonoBehaviour
             lastHandVelocity = (currentPosition - lastHandPosition) / Time.deltaTime;
             lastHandPosition = currentPosition;
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
 
         // Déplacement du kunai vers le socket
         if (isReturning && homeSocket != null)
@@ -85,12 +139,39 @@ public class KunaiThrow : MonoBehaviour
                 rb.isKinematic = false;
             }
         }
+<<<<<<< HEAD
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
     }
 
     void OnRelease(SelectExitEventArgs args)
     {
         if (rb == null || hasBeenThrown) return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        // Sous le seuil : on ne fait RIEN, le Rigidbody et XRGrabInteractable gèrent seuls
+        if (lastHandVelocity.magnitude < throwThreshold)
+            return;
+
+        hasBeenThrown = true;
+
+        // Désactiver le throw automatique du XRGrabInteractable pour que notre code prenne le contrôle
+        grabInteractable.throwOnDetach = false;
+
+        // Direction du lancer = direction réelle du mouvement de la main
+        Vector3 throwDirection = lastHandVelocity.normalized;
+
+        // Orienter la pointe (axe X local) vers la direction du lancer
+        transform.rotation = Quaternion.FromToRotation(transform.right, throwDirection) * transform.rotation;
+
+        rb.useGravity = gravityScale > 0f;
+        rb.linearVelocity = throwDirection * throwVelocity;
+        rb.angularVelocity = Vector3.zero;
+=======
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
         bool isThrow = lastHandVelocity.magnitude >= throwThreshold;
 
         if (isThrow)
@@ -131,6 +212,10 @@ public class KunaiThrow : MonoBehaviour
         rb.useGravity = false;
         isReturning = true;
         returnCoroutine = null;
+<<<<<<< HEAD
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
     }
 
     void OnDestroy()
@@ -145,4 +230,8 @@ public class KunaiThrow : MonoBehaviour
 }
 =======
 }
+<<<<<<< HEAD
 >>>>>>> 5eafe34 (fix kunai throw script)
+=======
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
+>>>>>>> bd44468b5d08d2c646636f0f6d16830dad86e68d
