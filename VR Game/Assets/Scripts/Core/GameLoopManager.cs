@@ -39,6 +39,10 @@ namespace Core
             }
         }
 
+        public void StartMain()
+        {
+                StartCoroutine(LoadLevelRoutine(0, LevelType.Main));
+            }
         public void StartPassivLevel()
         {
             StartCoroutine(LoadLevelRoutine(1, LevelType.PassivLevel));
@@ -47,6 +51,11 @@ namespace Core
         public void StartAgressiveLevel()
         {
             StartCoroutine(LoadLevelRoutine(2, LevelType.AgressiveLevel));
+        }
+
+        public void StartLevelTest()
+        {
+            StartCoroutine(LoadLevelRoutine(3, LevelType.LevelTest));
         }
 
         // Coroutine générique pour charger un niveau

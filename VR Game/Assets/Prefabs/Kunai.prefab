@@ -123,6 +123,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c28d8d381d19c5945ad6e758edb22e0b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2024237555328654437}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c28d8d381d19c5945ad6e758edb22e0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2692577816947952919}
   m_SourcePrefab: {fileID: 100100000, guid: c28d8d381d19c5945ad6e758edb22e0b, type: 3}
 --- !u!4 &5166504480212703574 stripped
 Transform:
@@ -311,3 +314,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.22871053, y: 0.025554704, z: 0.025554704}
   m_Center: {x: -0.0027283318, y: 0, z: 0}
+--- !u!114 &2692577816947952919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546408199444923372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c231e104f5314a14399a5fba1d64605c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  throwVelocity: 20
+  rotationVelocity: 10
+  gravityScale: 0
+  throwThreshold: 1.5
+  returnDelay: 3
+  returnSpeed: 30
+  homeSocket: {fileID: 0}

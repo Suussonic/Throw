@@ -13,8 +13,10 @@ namespace Core
 
     public enum LevelType
     {
+        Main,
         AgressiveLevel,
-        PassivLevel
+        PassivLevel,
+        LevelTest
     }
 
     [CreateAssetMenu(menuName = "Game/GameState")]

@@ -16,6 +16,14 @@ namespace VrAction
             {
                 GameLoopManager.Instance.StartAgressiveLevel();
             }
+            else if(levelToLoad == LevelType.LevelTest)
+            {
+                GameLoopManager.Instance.StartLevelTest();
+            }
+            else if(levelToLoad == LevelType.Main)
+            {
+                GameLoopManager.Instance.StartMain();
+            }
         }
     }
 }
