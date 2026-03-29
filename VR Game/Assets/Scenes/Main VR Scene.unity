@@ -587,6 +587,108 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &231522057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231522058}
+  - component: {fileID: 231522060}
+  - component: {fileID: 231522059}
+  m_Layer: 2
+  m_Name: Socket Intercator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231522058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231522057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 475083832}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231522059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231522057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
+  m_InteractionManager: {fileID: 0}
+  m_InteractionLayers:
+    m_Bits: 4294967295
+  m_Handedness: 0
+  m_AttachTransform: {fileID: 0}
+  m_KeepSelectedTargetValid: 1
+  m_DisableVisualsWhenBlockedInGroup: 1
+  m_StartingSelectedInteractable: {fileID: 6785670002420711577}
+  m_StartingTargetFilter: {fileID: 0}
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_ShowInteractableHoverMeshes: 1
+  m_InteractableHoverMeshMaterial: {fileID: 0}
+  m_InteractableCantHoverMeshMaterial: {fileID: 0}
+  m_SocketActive: 1
+  m_InteractableHoverScale: 0.43
+  m_RecycleDelayTime: 0.1
+  m_HoverSocketSnapping: 0
+  m_SocketSnappingRadius: 0.1
+  m_SocketScaleMode: 0
+  m_FixedScale: {x: 1, y: 1, z: 1}
+  m_TargetBoundsSize: {x: 1, y: 1, z: 1}
+--- !u!135 &231522060
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231522057}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &359746441
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +1048,7 @@ Transform:
   m_Children:
   - {fileID: 1504817653}
   - {fileID: 1201874987}
+  - {fileID: 231522058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &475083833
@@ -2518,14 +2621,33 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5546408199444923372, guid: b5101e688c3df69409185c675c664f73, type: 3}
       insertIndex: -1
+<<<<<<< HEAD
       addedObject: {fileID: 6785670002420711576}
+=======
+      addedObject: {fileID: 6785670002420711578}
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
   m_SourcePrefab: {fileID: 100100000, guid: b5101e688c3df69409185c675c664f73, type: 3}
 --- !u!1 &6785670002420711575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5546408199444923372, guid: b5101e688c3df69409185c675c664f73, type: 3}
   m_PrefabInstance: {fileID: 6785670002420711574}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!114 &6785670002420711576
+=======
+--- !u!114 &6785670002420711577 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8123509748467701186, guid: b5101e688c3df69409185c675c664f73, type: 3}
+  m_PrefabInstance: {fileID: 6785670002420711574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785670002420711575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
+--- !u!114 &6785670002420711578
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2534,13 +2656,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6785670002420711575}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: c555f0b2b49861e4d840f539f7b6e4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KunaiThrow
+=======
+  m_Script: {fileID: 11500000, guid: c231e104f5314a14399a5fba1d64605c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
   throwVelocity: 20
   rotationVelocity: 10
   gravityScale: 0
   throwThreshold: 1.5
+<<<<<<< HEAD
+=======
+  returnDelay: 3
+  returnSpeed: 5
+  homeSocket: {fileID: 0}
+>>>>>>> 14df85a7309ad62b7d51107dbe314698f9d19109
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

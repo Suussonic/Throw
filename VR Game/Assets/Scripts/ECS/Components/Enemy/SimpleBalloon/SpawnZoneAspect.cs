@@ -16,7 +16,6 @@ namespace ECS.Components
         private readonly RefRO<SpawnZoneProperties> _spawnZoneProperties;
         private readonly RefRW<SpawnZoneRandom> _spawnZoneRandom;
         private readonly RefRW<BalloonSpawnPoint> _balloonSpawnPoints;
-        private readonly RefRW<BalloonSpawnTimer> _balloonSpawnTimer;
         
         private const float SafetyRadius = 20f;
         public int NumberSpawnPointToSpawn => _spawnZoneProperties.ValueRO.NumberSpawnPoints;
@@ -43,7 +42,7 @@ namespace ECS.Components
             do
             {
                 randomPosition = _spawnZoneRandom.ValueRW.Value.NextFloat3(MinCorner, MaxCorner);
-            }while (math.distancesq(_transform.ValueRO.Position,randomPosition) < SafetyRadius); // Ensure spawn point is not too close to center/village
+            }while (math.distancesq(_transform.ValueRO.Position,randomPosition) < SafetyRadius); 
             return randomPosition;
         }
 
@@ -60,32 +59,5 @@ namespace ECS.Components
         private quaternion GetRandomRotation() => quaternion.RotateY(_spawnZoneRandom.ValueRW.Value.NextFloat(-0.25f,0.25f));
         private float GetRandomScale(float min) => _spawnZoneRandom.ValueRW.Value.NextFloat(min, 1f);
         
-        public float GoblinSpawnTimer
-        {
-            get => _balloonSpawnTimer.ValueRO.Value;
-            set => _balloonSpawnTimer.ValueRW.Value = value;
-        }
-        
-        public bool TimeToSpawnGoblin => GoblinSpawnTimer <= 0f;
-        
-        public float GoblinSpawnRate => _spawnZoneProperties.ValueRO.BalloonSpawnRate;
-        
-        public Entity BasicGoblinPrefab => _spawnZoneProperties.ValueRO.BasicBalloonPrefab;
-        
-        public LocalTransform GetGoblinSpawnPoint()
-        {
-            var spawnData = GetRandomGoblinSpawnData();
-            return new LocalTransform
-            {
-                Position = spawnData.SpawnPosition,
-                Rotation = quaternion.RotateY(MathHelpers.GetHeading(spawnData.SpawnPosition, _transform.ValueRO.Position)),
-                Scale = 1f
-            };
-        }
-
-        private BalloonSpawnData GetRandomGoblinSpawnData()
-        {
-            return BalloonSpawnPoints[_spawnZoneRandom.ValueRW.Value.NextInt(0, BalloonSpawnPoints.Length)];
-        }
     }
 }
