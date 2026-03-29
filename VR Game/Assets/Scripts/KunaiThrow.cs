@@ -15,7 +15,7 @@ public class KunaiThrow : MonoBehaviour
     [Header("Retour au Socket")]
     [SerializeField] public float returnDelay = 3f;          // Secondes avant que le kunai revienne
     [SerializeField] public float returnSpeed = 5f;          // Vitesse de déplacement vers le socket
-    [SerializeField] public XRSocketInteractor homeSocket;   // Le socket qui possède le kunai
+    [SerializeField] public XRSocketInteractor homeSocket;   // Le socket qui possède le kunai (À ASSIGNER DANS L'INSPECTOR!)
 
     private XRGrabInteractable grabInteractable;
     private Rigidbody rb;
@@ -25,6 +25,7 @@ public class KunaiThrow : MonoBehaviour
     private bool hasBeenThrown = false;
     private Coroutine returnCoroutine;
     private bool isReturning = false;
+    private XRInteractionManager interactionManager;
 
     void Start()
     {
@@ -35,6 +36,15 @@ public class KunaiThrow : MonoBehaviour
         {
             grabInteractable.selectEntered.AddListener(OnGrab);
             grabInteractable.selectExited.AddListener(OnRelease);
+            
+            // Récupérer l'Interaction Manager depuis le grabInteractable
+            interactionManager = grabInteractable.interactionManager;
+        }
+        
+        // Vérification de configuration
+        if (homeSocket == null)
+        {
+            Debug.LogWarning($"[KunaiThrow] '{gameObject.name}': homeSocket n'est pas assigné! Le kunai ne reviendra pas automatiquement.", this);
         }
     }
 
@@ -73,23 +83,37 @@ public class KunaiThrow : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target.rotation, returnSpeed * 180f * Time.deltaTime);
 
             // Snap au socket une fois assez proche
-            if (Vector3.Distance(transform.position, target.position) < 0.05f)
+            if (Vector3.Distance(transform.position, target.position) < 0.1f)
             {
                 isReturning = false;
+                
+                // Arrêter toute physique
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true;
+                rb.useGravity = false;
+                
+                // Positionner exactement au socket
+                transform.position = target.position;
+                transform.rotation = target.rotation;
 
-                // Forcer le socket à prendre le kunai
-                homeSocket.StartManualInteraction(grabInteractable as IXRSelectInteractable);
-                rb.isKinematic = false;
+                // Réattacher au socket via l'Interaction Manager
+                if (interactionManager != null && homeSocket.interactablesSelected.Count == 0)
+                {
+                    interactionManager.SelectEnter((IXRSelectInteractor)homeSocket, (IXRSelectInteractable)grabInteractable);
+                    Debug.Log($"[KunaiThrow] {gameObject.name} est revenu au socket!");
+                }
+                else if (homeSocket.interactablesSelected.Count > 0)
+                {
+                    Debug.LogWarning($"[KunaiThrow] Le socket est déjà occupé par {homeSocket.interactablesSelected[0]}");
+                    // Reste en position mais ne s'attache pas
+                }
             }
         }
     }
 
     void OnRelease(SelectExitEventArgs args)
     {
-        if (rb == null || hasBeenThrown) return;
+        if (rb == null) return;
 
         bool isThrow = lastHandVelocity.magnitude >= throwThreshold;
 
@@ -104,6 +128,14 @@ public class KunaiThrow : MonoBehaviour
             rb.useGravity = gravityScale > 0f;
             rb.linearVelocity = throwDirection * throwVelocity;
             rb.angularVelocity = Vector3.zero;
+            
+            Debug.Log($"[KunaiThrow] {gameObject.name} lancé avec vélocité {lastHandVelocity.magnitude:F2} m/s");
+        }
+        else
+        {
+            // Simple relâchement
+            hasBeenThrown = false;
+            Debug.Log($"[KunaiThrow] {gameObject.name} relâché sans lancer (vélocité {lastHandVelocity.magnitude:F2} < {throwThreshold})");
         }
 
         // Dans les deux cas (lancer ou simple relâchement), démarrer le timer de retour
@@ -112,24 +144,43 @@ public class KunaiThrow : MonoBehaviour
             if (returnCoroutine != null) StopCoroutine(returnCoroutine);
             returnCoroutine = StartCoroutine(ReturnAfterDelay());
         }
+        else
+        {
+            Debug.LogWarning($"[KunaiThrow] {gameObject.name}: Pas de homeSocket assigné, le kunai ne reviendra pas!");
+        }
+        
+        handTransform = null;
     }
 
     private IEnumerator ReturnAfterDelay()
     {
+        Debug.Log($"[KunaiThrow] {gameObject.name} reviendra au socket dans {returnDelay} secondes...");
         yield return new WaitForSeconds(returnDelay);
 
         // Ne pas revenir si le kunai est à nouveau tenu
         if (grabInteractable != null && grabInteractable.isSelected)
         {
+            Debug.Log($"[KunaiThrow] {gameObject.name} est tenu par le joueur, annulation du retour.");
             returnCoroutine = null;
             yield break;
         }
 
+        // Vérifier que le socket existe toujours
+        if (homeSocket == null)
+        {
+            Debug.LogWarning($"[KunaiThrow] {gameObject.name}: homeSocket est null, impossible de revenir!");
+            returnCoroutine = null;
+            yield break;
+        }
+
+        Debug.Log($"[KunaiThrow] {gameObject.name} commence son retour au socket...");
+        
         // Couper la physique pour un déplacement contrôlé
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.useGravity = false;
         isReturning = true;
+        hasBeenThrown = false;
         returnCoroutine = null;
     }
 
