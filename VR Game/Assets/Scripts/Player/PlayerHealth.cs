@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Core;
 
 namespace Player
 {
@@ -29,6 +30,8 @@ namespace Player
             if (IsDead)
             {
                 OnDeath?.Invoke();
+                Debug.Log("Joueur mort : Retour au menu...");
+                GameLoopManager.Instance.ReturnToMenu(); 
             }
         }
 
