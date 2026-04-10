@@ -76,10 +76,12 @@ public class LevelScoreDisplay : MonoBehaviour
     /// </summary>
     public void UpdateDisplay()
     {
-        if (scoreText == null || LevelScoreManager.Instance == null)
+        if (scoreText == null)
             return;
 
-        int bestScore = LevelScoreManager.Instance.GetBestScore(levelType);
+        int bestScore = (LevelScoreManager.Instance != null)
+            ? LevelScoreManager.Instance.GetBestScore(levelType)
+            : LevelScoreManager.GetBestScoreFromPrefs(levelType);
 
         // Optimisation: ne mettre à jour que si le score a changé
         if (bestScore == lastDisplayedScore && lastDisplayedScore != -1)

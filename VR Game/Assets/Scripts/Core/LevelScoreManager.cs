@@ -11,6 +11,11 @@ public class LevelScoreManager : MonoBehaviour
 
     private const string SCORE_KEY_PREFIX = "BestScore_";
 
+    private static string GetScoreKey(LevelType levelType)
+    {
+        return SCORE_KEY_PREFIX + levelType;
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,33 +29,19 @@ public class LevelScoreManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sauvegarde le score pour un niveau (seulement si c'est un nouveau meilleur score)
+    /// Sauvegarde le score courant pour un niveau
     /// </summary>
     public void SaveScore(LevelType levelType, int score)
     {
-        int currentBest = GetBestScore(levelType);
-        
-        if (score > currentBest)
-        {
-            string key = SCORE_KEY_PREFIX + levelType.ToString();
-            PlayerPrefs.SetInt(key, score);
-            PlayerPrefs.Save();
-            
-            Debug.Log($"<color=lime>✓ Nouveau meilleur score pour {levelType}: {score} (ancien: {currentBest})</color>");
-        }
-        else
-        {
-            Debug.Log($"<color=yellow>Score {score} pour {levelType} (meilleur: {currentBest})</color>");
-        }
+        SaveScoreToPrefs(levelType, score);
     }
 
     /// <summary>
-    /// Récupère le meilleur score pour un niveau
+    /// Récupère le score enregistré pour un niveau
     /// </summary>
     public int GetBestScore(LevelType levelType)
     {
-        string key = SCORE_KEY_PREFIX + levelType.ToString();
-        return PlayerPrefs.GetInt(key, 0); // 0 par défaut si pas de score sauvegardé
+        return GetBestScoreFromPrefs(levelType);
     }
 
     /// <summary>
@@ -58,10 +49,27 @@ public class LevelScoreManager : MonoBehaviour
     /// </summary>
     public void ResetLevelScore(LevelType levelType)
     {
-        string key = SCORE_KEY_PREFIX + levelType.ToString();
+        string key = GetScoreKey(levelType);
         PlayerPrefs.DeleteKey(key);
         PlayerPrefs.Save();
         Debug.Log($"Score réinitialisé pour {levelType}");
+    }
+
+    public static void SaveScoreToPrefs(LevelType levelType, int score)
+    {
+        string key = GetScoreKey(levelType);
+        int previousScore = PlayerPrefs.GetInt(key, 0);
+
+        PlayerPrefs.SetInt(key, score);
+        PlayerPrefs.Save();
+
+        Debug.Log($"<color=lime>✓ Score sauvegardé pour {levelType}: {score} (ancien: {previousScore})</color>");
+    }
+
+    public static int GetBestScoreFromPrefs(LevelType levelType)
+    {
+        string key = GetScoreKey(levelType);
+        return PlayerPrefs.GetInt(key, 0); // 0 par défaut si pas de score sauvegardé
     }
 
     /// <summary>

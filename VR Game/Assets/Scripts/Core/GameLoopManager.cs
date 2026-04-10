@@ -64,6 +64,8 @@ namespace Core
             // Attend une frame pour laisser les systèmes ECS finir leur mise à jour
             yield return null;
 
+            SaveCurrentSceneScoreIfAny();
+
             gameState.ChangeLevel(levelType);
             gameState.ChangeState(GameState.Playing);
             
@@ -126,6 +128,8 @@ namespace Core
             // IMPORTANT : On attend que la frame ECS soit finie
             yield return null;
 
+            SaveCurrentSceneScoreIfAny();
+
             Time.timeScale = 1f;
             gameState.ChangeState(GameState.MainMenu);
             
@@ -137,6 +141,58 @@ namespace Core
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+        public LevelType GetCurrentLevel()
+        {
+            if (gameState != null)
+            {
+                return gameState.CurrentLevel;
+            }
+
+            Debug.LogWarning("GameLoopManager: GameStateSO non assigné, niveau par défaut utilisé.");
+            return LevelType.Main;
+        }
+
+        private void SaveCurrentSceneScoreIfAny()
+        {
+            ScoreUI scoreUI = FindObjectOfType<ScoreUI>();
+            if (scoreUI == null)
+                return;
+
+            LevelType currentLevel = GetCurrentLevel();
+            if (currentLevel == LevelType.Main)
+            {
+                currentLevel = GuessLevelFromSceneName();
+            }
+
+            if (currentLevel == LevelType.Main)
+                return;
+
+            int score = scoreUI.GetScore();
+
+            if (LevelScoreManager.Instance != null)
+            {
+                LevelScoreManager.Instance.SaveScore(currentLevel, score);
+            }
+            else
+            {
+                LevelScoreManager.SaveScoreToPrefs(currentLevel, score);
+            }
+        }
+
+        private LevelType GuessLevelFromSceneName()
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+
+            if (sceneName.Contains("Agressive"))
+                return LevelType.AgressiveLevel;
+            if (sceneName.Contains("Static") || sceneName.Contains("Passiv"))
+                return LevelType.PassivLevel;
+            if (sceneName.Contains("Test"))
+                return LevelType.LevelTest;
+
+            return LevelType.Main;
         }
     }
 }

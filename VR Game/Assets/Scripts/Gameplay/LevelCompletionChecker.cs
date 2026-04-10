@@ -154,23 +154,13 @@ public class LevelCompletionChecker : MonoBehaviour
             return;
         }
 
-        // Obtenir le ScriptableObject GameState
-        var gameStateGO = GameObject.Find("GameLoopManager");
-        if (gameStateGO == null)
-        {
-            Debug.LogWarning("GameObject GameLoopManager introuvable pour récupérer le niveau actuel.");
-            return;
-        }
+        // Utiliser la source officielle du niveau courant
+        LevelType currentLevel = GameLoopManager.Instance.GetCurrentLevel();
 
-        var gameLoopManager = gameStateGO.GetComponent<GameLoopManager>();
-        if (gameLoopManager == null)
+        if (currentLevel == LevelType.Main)
         {
-            Debug.LogWarning("Component GameLoopManager introuvable.");
-            return;
+            currentLevel = GuessLevelFromSceneName();
         }
-
-        // Utiliser la méthode publique GetCurrentLevel() pour obtenir le niveau
-        LevelType currentLevel = GetCurrentLevelFromGameState();
 
         // Sauvegarder via LevelScoreManager
         if (LevelScoreManager.Instance != null)
@@ -184,24 +174,20 @@ public class LevelCompletionChecker : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("LevelScoreManager.Instance est null! Score non sauvegardé.");
+            LevelScoreManager.SaveScoreToPrefs(currentLevel, finalScore);
+
+            if (showDebugLogs)
+            {
+                Debug.Log($"<color=cyan>Score final sauvegardé (fallback): {finalScore} pour {currentLevel}</color>");
+            }
         }
     }
 
     /// <summary>
-    /// Récupère le niveau actuel depuis le GameStateSO
+    /// Fallback: détermine le niveau depuis le nom de la scène active
     /// </summary>
-    private LevelType GetCurrentLevelFromGameState()
+    private LevelType GuessLevelFromSceneName()
     {
-        // Chercher le GameStateSO dans les Resources ou via le GameLoopManager
-        GameStateSO gameState = Resources.FindObjectsOfTypeAll<GameStateSO>()[0];
-        
-        if (gameState != null)
-        {
-            return gameState.CurrentLevel;
-        }
-
-        // Fallback: essayer de deviner depuis le nom de la scène
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         
         if (sceneName.Contains("Agressive"))
