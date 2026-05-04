@@ -9,9 +9,6 @@ namespace Core
     {
         public static GameLoopManager Instance { get; private set; }
         [SerializeField] private GameStateSO gameState;
-        [Header("Level Settings")]
-        [SerializeField] private float passivLevelDuration = 60f;
-        private Coroutine _passivLevelTimerCoroutine;
 
         private void Awake()
         {
@@ -48,31 +45,9 @@ namespace Core
             }
         public void StartPassivLevel()
         {
-            //TODO ajouter un timer et quand timer fini retour au menu
             StartCoroutine(LoadLevelRoutine(1, LevelType.PassivLevel));
-
-            if (_passivLevelTimerCoroutine != null)
-            {
-                StopCoroutine(_passivLevelTimerCoroutine);
-            }
-            
-            _passivLevelTimerCoroutine = StartCoroutine(PassivLevelTimerRoutine());
         }
 
-        private IEnumerator PassivLevelTimerRoutine()
-        {
-            yield return new WaitUntil(() => gameState != null && gameState.CurrentState == GameState.Playing);
-    
-            
-            yield return new WaitForSeconds(passivLevelDuration);
-
-            if (GetCurrentLevel() == LevelType.PassivLevel)
-            {
-                Debug.Log("Timer terminé ! Retour au menu principal.");
-                ReturnToMenu();
-            }
-        }
-        
         public void StartAgressiveLevel()
         {
             StartCoroutine(LoadLevelRoutine(2, LevelType.AgressiveLevel));
@@ -150,12 +125,7 @@ namespace Core
 
         private IEnumerator ReturnToMenuRoutine()
         {
-            if (_passivLevelTimerCoroutine != null)
-            {
-                StopCoroutine(_passivLevelTimerCoroutine);
-                _passivLevelTimerCoroutine = null;
-            }
-            
+            // IMPORTANT : On attend que la frame ECS soit finie
             yield return null;
 
             SaveCurrentSceneScoreIfAny();
