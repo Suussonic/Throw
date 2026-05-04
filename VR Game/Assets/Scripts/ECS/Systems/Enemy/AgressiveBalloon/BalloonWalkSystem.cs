@@ -47,7 +47,9 @@ namespace ECS.Systems.Enemy.AgressiveBalloon
         
         private void Execute(Entity entity, ref LocalTransform transform, in BalloonWalkProperties properties, ref BalloonHeading heading, [EntityIndexInQuery] int sortKey)
         {
-            heading.Value = TargetPosition;
+            float3 offset = new float3(0f, 1f, 0f); 
+            float3 finalTarget  =  TargetPosition + offset;
+            heading.Value = finalTarget;
             
             // 2. Vérification de la distance d'arrêt AVANT le déplacement
             // On vérifie d'abord si on est au contact du joueur pour arrêter de le traquer
