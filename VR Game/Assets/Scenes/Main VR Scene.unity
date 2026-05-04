@@ -3082,6 +3082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameLoopManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8387530279989889859, guid: 8d05749ba76debe4ca42b205ae5bddd3, type: 3}
+      propertyPath: passivLevelDuration
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
