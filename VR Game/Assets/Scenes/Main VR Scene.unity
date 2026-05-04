@@ -903,7 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed776fd8a5a450691c5dc1b25672190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VrAction.changeLevel
-  levelToLoad: 0
+  levelToLoad: 1
 --- !u!1 &809544917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,7 +2760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed776fd8a5a450691c5dc1b25672190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VrAction.changeLevel
-  levelToLoad: 0
+  levelToLoad: 2
 --- !u!1 &1180255411
 GameObject:
   m_ObjectHideFlags: 0
