@@ -1,8 +1,11 @@
 ﻿using ECS.Components;
-using ECS.Components.Balloon;
+using ECS.Components.Enemy.AgressiveBalloon;
+using ECS.Components.Enemy.SimpleBalloon;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace ECS.Systems.Enemy.SimpleBalloon
 {
@@ -43,21 +46,23 @@ namespace ECS.Systems.Enemy.SimpleBalloon
         public EntityCommandBuffer.ParallelWriter ECB;
         [ReadOnly] public ComponentLookup<BalloonWalkProperties> CanWalk;
 
-        private void Execute(BalloonRiseAspect balloon, [EntityIndexInQuery] int sortKey)
+        private void Execute(Entity entity, ref LocalTransform transform, in BalloonRiseRate riseRate, [EntityIndexInQuery] int sortKey)
         {
-            balloon.Rise(DeltaTime);
+            // 1. Rise
+            transform.Position += math.up() * riseRate.Value * DeltaTime;
 
-            if (balloon.IsAboveLimit)
+            // 2. Vérification de la limite de hauteur (IsAboveLimit)
+            if (transform.Position.y >= riseRate.TargetHeight)
             {
-                ECB.RemoveComponent<BalloonRiseRate>(sortKey, balloon.Entity);
-                if (CanWalk.HasComponent(balloon.Entity))
+                ECB.RemoveComponent<BalloonRiseRate>(sortKey, entity);
+                if (CanWalk.HasComponent(entity))
                 {
-                    ECB.SetComponentEnabled<BalloonWalkProperties>(sortKey, balloon.Entity, true);
-                    ECB.SetComponentEnabled<BalloonHeading>(sortKey, balloon.Entity, true);
+                    ECB.SetComponentEnabled<BalloonWalkProperties>(sortKey, entity, true);
+                    ECB.SetComponentEnabled<BalloonHeading>(sortKey, entity, true);
                 }
                 else
                 {
-                    ECB.DestroyEntity(sortKey, balloon.Entity);
+                    ECB.DestroyEntity(sortKey, entity);
                 }
             }
         }

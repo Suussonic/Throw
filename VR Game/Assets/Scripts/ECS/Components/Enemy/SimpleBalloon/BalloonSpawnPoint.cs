@@ -1,18 +1,11 @@
-﻿using Unity.Collections;
-using Unity.Entities;
+﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ECS.Components
+namespace ECS.Components.Enemy.SimpleBalloon
 {
-    public struct BalloonSpawnData
+    public struct BalloonSpawnData : IComponentData
     {
         public float3 SpawnPosition;  
         public float TargetHeight;   
-    }
-    
-    [ChunkSerializable]
-    public struct BalloonSpawnPoint : IComponentData
-    {
-        public NativeArray<BalloonSpawnData> Value;
     }
 }
