@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 103a4a31751cc3f448d3b1006a90d0e3, type: 2}
     - target: {fileID: 919132149155446097, guid: 49d6ec82c6cb74040ad6623bc4ef5328, type: 3}
       propertyPath: m_Name
-      value: Shuriken 1
+      value: Shuriken Copy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99,7 +99,7 @@ PrefabInstance:
       addedObject: {fileID: 6805256979982938247}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49d6ec82c6cb74040ad6623bc4ef5328, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8158019485102802902}
+      addedObject: {fileID: 2454090929598002578}
   m_SourcePrefab: {fileID: 100100000, guid: 49d6ec82c6cb74040ad6623bc4ef5328, type: 3}
 --- !u!1 &8334740507039716598 stripped
 GameObject:
@@ -283,7 +283,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.022, y: 0.021999996, z: 0.0009999998}
   m_Center: {x: 0, y: 0, z: 0.0004999999}
---- !u!114 &8158019485102802902
+--- !u!114 &2454090929598002578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,25 +292,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8334740507039716598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba9494523b8522468c5ed96b18a3b9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d767786a2df2d2448724e377556bdc6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenThrow
-  throwVelocity: 18
-  gravityScale: 0
-  throwThreshold: 1.2
-  arcAngleThreshold: 55
-  arcTimeWindow: 0.45
-  arcSampleCount: 20
-  requireConsistentArc: 1
-  arcConsistencyTolerance: 40
-  spreadAngle: 45
-  sideVelocityMultiplier: 0.85
-  spreadOnHorizontalPlane: 1
-  copyLifetime: 6
-  shurikenCopyPrefab: {fileID: 0}
-  spinSpeed: 720
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenProjectile
   spinAxis: {x: 0, y: 0, z: 1}
-  returnDelay: 3
-  returnSpeed: 6
-  snapDistance: 0.08
-  homeSocket: {fileID: 0}
+  spinSpeed: 720
+  lifetime: 6
