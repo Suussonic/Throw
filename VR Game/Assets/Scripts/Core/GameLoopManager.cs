@@ -12,7 +12,7 @@ namespace Core
         [Header("Level Settings")]
         [SerializeField] private float passivLevelDuration = 60f;
         private Coroutine _passivLevelTimerCoroutine;
-
+        public float PassivLevelRemainingTime { get; private set; }
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -61,10 +61,16 @@ namespace Core
 
         private IEnumerator PassivLevelTimerRoutine()
         {
+
             yield return new WaitUntil(() => gameState != null && gameState.CurrentState == GameState.Playing);
-    
-            
-            yield return new WaitForSeconds(passivLevelDuration);
+
+            PassivLevelRemainingTime = passivLevelDuration;
+
+            while (PassivLevelRemainingTime > 0)
+            {
+                PassivLevelRemainingTime -= Time.deltaTime;
+                yield return null;
+            }
 
             if (GetCurrentLevel() == LevelType.PassivLevel)
             {
