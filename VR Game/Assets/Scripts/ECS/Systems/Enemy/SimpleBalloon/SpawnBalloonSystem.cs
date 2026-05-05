@@ -1,83 +1,77 @@
 ﻿using ECS.Components;
-using ECS.Components.Enemy.SimpleBalloon;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace ECS.Systems.Enemy.SimpleBalloon
+namespace ECS.Systems
 {
     public partial struct SpawnBalloonSystem : ISystem
     {
-        private ComponentLookup<BalloonRiseRate> _balloonRiseRateLookup;
-        private EntityQuery _spawnPointQuery;
-
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<SpawnZoneProperties>();
-            state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
-            
-            _balloonRiseRateLookup = state.GetComponentLookup<BalloonRiseRate>(true);
-
-            _spawnPointQuery = new EntityQueryBuilder(Allocator.Persistent)
-                .WithAll<BalloonSpawnData>()
-                .Build(ref state);
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            _balloonRiseRateLookup.Update(ref state);
-
-            // On récupère dynamiquement les points de spawn posés via SpawnPointSystem
-            var spawnPoints = _spawnPointQuery.ToComponentDataArray<BalloonSpawnData>(Allocator.Temp);
-            
-            if (spawnPoints.Length == 0) return;
-
             var deltaTime = SystemAPI.Time.DeltaTime;
+            var spawnZoneEntity = SystemAPI.GetSingletonEntity<SpawnZoneProperties>();
+            var spawnZone = SystemAPI.GetAspect<SpawnZoneAspect>(spawnZoneEntity);
+
+            if (spawnZone.BalloonSpawnPoints.Length == 0) return;
+
             var ecbSingleton = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
-
-            // Cette boucle est l'équivalent de ton IJobEntity (Optimisée Burst)
-            foreach (var (spawnZoneProperties, balloonSpawnTimer, spawnZoneRandom) in
-                     SystemAPI.Query<RefRO<SpawnZoneProperties>, RefRW<BalloonSpawnTimer>, RefRW<SpawnZoneRandom>>())
+            new SpawnBalloonJob
             {
-                var props = spawnZoneProperties.ValueRO;
+                DeltaTime = deltaTime,
+                ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
+                BalloonSpawnPoints = spawnZone.BalloonSpawnPoints,
+                SpawnZoneEntity = spawnZoneEntity,
+                BalloonRiseRateLookup = state.GetComponentLookup<BalloonRiseRate>(true)
+            }.ScheduleParallel();
+        }
+    }
 
-                balloonSpawnTimer.ValueRW.Value -= deltaTime;
-                if (balloonSpawnTimer.ValueRW.Value > 0f)
-                {
-                    continue;
-                }
+    [BurstCompile]
+    public partial struct SpawnBalloonJob : IJobEntity
+    {
+        public float DeltaTime;
+        public EntityCommandBuffer.ParallelWriter ECB;
+        [ReadOnly] public NativeArray<BalloonSpawnData> BalloonSpawnPoints;
+        public Entity SpawnZoneEntity;
+        [ReadOnly] public ComponentLookup<BalloonRiseRate> BalloonRiseRateLookup;
 
-                var newBalloon = ecb.Instantiate(props.BasicBalloonPrefab);
+        private void Execute(in SpawnZoneProperties spawnZoneProperties, [EntityIndexInQuery] int entityIndexInQuery, RefRW<BalloonSpawnTimer> balloonSpawnTimer, RefRW<SpawnZoneRandom> spawnZoneRandom)
+        {
+            balloonSpawnTimer.ValueRW.Value -= DeltaTime;
+            if (balloonSpawnTimer.ValueRW.Value > 0f) return;
+            if (BalloonSpawnPoints.Length == 0) return;
 
-                var random = spawnZoneRandom.ValueRW.Value;
-                var spawnPointIndex = random.NextInt(0, spawnPoints.Length);
-                spawnZoneRandom.ValueRW.Value = random; // Appliquer le nouvel état du random
-                
-                var spawnData = spawnPoints[spawnPointIndex];
+            balloonSpawnTimer.ValueRW.Value = spawnZoneProperties.BalloonSpawnRate;
+            var newBalloon = ECB.Instantiate(entityIndexInQuery, spawnZoneProperties.BasicBalloonPrefab);
 
-                ecb.SetComponent(newBalloon, new LocalTransform
-                {
-                    Position = spawnData.SpawnPosition,
-                    Rotation = quaternion.identity,
-                    Scale = 1f
-                });
+            var spawnPointIndex = spawnZoneRandom.ValueRW.Value.NextInt(0, BalloonSpawnPoints.Length);
+            var spawnData = BalloonSpawnPoints[spawnPointIndex];
 
-                var prefabRiseRate = _balloonRiseRateLookup[props.BasicBalloonPrefab];
-                ecb.SetComponent(newBalloon, new BalloonRiseRate
-                {
-                    Value = prefabRiseRate.Value,
-                    TargetHeight = prefabRiseRate.TargetHeight
-                });
+            var newBalloonTransform = new LocalTransform
+            {
+                Position = spawnData.SpawnPosition,
+                Rotation = quaternion.identity,
+                Scale = 1f
+            };
+            ECB.SetComponent(entityIndexInQuery, newBalloon, newBalloonTransform);
 
-                balloonSpawnTimer.ValueRW.Value = props.BalloonSpawnRate;
-            }
-            
-            spawnPoints.Dispose(); // Libération vitale du tableau Temp
+            // Read both riseRate and targetHeight from the prefab (baked by GoblinBaker from the Balloon inspector)
+            var prefabRiseRate = BalloonRiseRateLookup[spawnZoneProperties.BasicBalloonPrefab];
+            ECB.SetComponent(entityIndexInQuery, newBalloon, new BalloonRiseRate
+            {
+                Value = prefabRiseRate.Value,
+                TargetHeight = prefabRiseRate.TargetHeight
+            });
         }
     }
 }

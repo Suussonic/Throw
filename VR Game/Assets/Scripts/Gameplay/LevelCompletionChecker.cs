@@ -2,9 +2,8 @@ using UnityEngine;
 using Unity.Entities;
 using Core;
 using ECS.Components;
+using ECS.Components.Balloon;
 using System.Collections;
-using ECS.Components.Enemy.AgressiveBalloon;
-using ECS.Components.Enemy.SimpleBalloon;
 
 /// <summary>
 /// Vérifie si tous les ballons ont été détruits, sauvegarde le score final

@@ -1,9 +1,10 @@
 ﻿using ECS.Authorings.Enemy.Balloon;
+using ECS.Components.Balloon;
 using ECS.Components.Enemy.AgressiveBalloon;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
+using BalloonWalkAspect = ECS.Components.Enemy.AgressiveBalloon.BalloonWalkAspect;
 
 namespace ECS.Systems.Enemy.AgressiveBalloon
 {
@@ -37,7 +38,6 @@ namespace ECS.Systems.Enemy.AgressiveBalloon
 
     [BurstCompile]
     [WithAll(typeof(BalloonWalkProperties))]
-    [WithNone(typeof(BalloonReachedTarget))] // <-- ESSENTIEL: Filtre pour ignorer ceux qui ont déjà touché la cible
     public partial struct BalloonWalkJob : IJobEntity
     {
         public float DeltaTime;
@@ -45,23 +45,15 @@ namespace ECS.Systems.Enemy.AgressiveBalloon
         public float3 TargetPosition;
         public EntityCommandBuffer.ParallelWriter ECB;
         
-        private void Execute(Entity entity, ref LocalTransform transform, in BalloonWalkProperties properties, ref BalloonHeading heading, [EntityIndexInQuery] int sortKey)
+        private void Execute(BalloonWalkAspect balloon, [EntityIndexInQuery] int sortKey)
         {
-            heading.Value = TargetPosition;
+            balloon.SetHeading(TargetPosition);
             
-            // 2. Vérification de la distance d'arrêt AVANT le déplacement
-            // On vérifie d'abord si on est au contact du joueur pour arrêter de le traquer
-            if (math.distancesq(TargetPosition, transform.Position) <= StopDistanceSq)
+            balloon.Walk(DeltaTime);
+            
+            if (balloon.IsInStoppingRange(balloon.Heading, StopDistanceSq))
             {
-                ECB.AddComponent<BalloonReachedTarget>(sortKey, entity);
-                return; // On arrête là pour cette frame
-            }
-
-            // 3. Déplacement (Walk)
-            float3 direction = math.normalizesafe(heading.Value - transform.Position);
-            if (math.lengthsq(direction) > 0.001f)
-            {
-                transform.Position += direction * properties.WalkSpeed * DeltaTime;
+                ECB.AddComponent<BalloonReachedTarget>(sortKey, balloon.Entity);
             }
         }
     }

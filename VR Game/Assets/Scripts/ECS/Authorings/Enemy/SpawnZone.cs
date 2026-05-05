@@ -1,10 +1,10 @@
-﻿using ECS.Components.Enemy.SimpleBalloon;
+﻿using ECS.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-namespace ECS.Authorings.Enemy
+namespace ECS.Authoring
 {
     public class SpawnZone : MonoBehaviour
     {
@@ -33,6 +33,7 @@ namespace ECS.Authorings.Enemy
             {
                 Value = Random.CreateFromIndex(authoring.randomSeed),
             });
+            AddComponent<BalloonSpawnPoint>(entity);
             AddComponent<BalloonSpawnTimer>(entity);
         }
     }

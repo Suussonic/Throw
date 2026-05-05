@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace ECS.Components.Enemy.SimpleBalloon
+namespace ECS.Components
 {
     public struct BalloonRiseRate : IComponentData, IEnableableComponent
     {

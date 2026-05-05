@@ -1,8 +1,8 @@
-﻿using ECS.Components.Enemy.AgressiveBalloon;
-using ECS.Components.Enemy.SimpleBalloon;
+﻿﻿using ECS.Components;
+using ECS.Components.Balloon;
 using UnityEngine;
 
-namespace ECS.Authorings.Enemy.Balloon
+namespace ECS.Authoring
 {
     public class Balloon : MonoBehaviour
     {
@@ -18,7 +18,7 @@ namespace ECS.Authorings.Enemy.Balloon
         public override void Bake(Balloon authoring)
         {
             var entity = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
-            AddComponent(entity, new BalloonRiseRate
+            AddComponent(entity, new ECS.Components.BalloonRiseRate
             {
                 Value = authoring.riseRate,
                 TargetHeight = authoring.targetHeight
