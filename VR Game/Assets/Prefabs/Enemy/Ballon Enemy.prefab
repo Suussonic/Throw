@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 103a4a31751cc3f448d3b1006a90d0e3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4cd3e62affc8da245b0d41d9198877ff, type: 3}
       propertyPath: m_Name
-      value: Ballon LV1
+      value: Ballon Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -97,6 +97,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4cd3e62affc8da245b0d41d9198877ff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3748156898587536542}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4cd3e62affc8da245b0d41d9198877ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3286915215293439294}
   m_SourcePrefab: {fileID: 100100000, guid: 4cd3e62affc8da245b0d41d9198877ff, type: 3}
 --- !u!1 &4475363833491037578 stripped
 GameObject:
@@ -159,3 +162,21 @@ MonoBehaviour:
   hasTarget: 0
   canWalk: 0
   targetHeight: 5
+--- !u!114 &-3286915215293439294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4475363833491037578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8283a21a84b152f43b88c6c4bb92c18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Target
+  pointsValue: 10
+  destroyDelay: 0.1
+  disableInsteadOfDestroy: 0
+  hitParticlesPrefab: {fileID: 0}
+  hitSound: {fileID: 0}
+  showDebugLogs: 0
