@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ECS.Components
+namespace ECS.Components.Enemy.SimpleBalloon
 {
     public struct SpawnZoneRandom : IComponentData
     {

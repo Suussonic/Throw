@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ECS.Components.Balloon
+namespace ECS.Components.Enemy.AgressiveBalloon
 {
     public struct BalloonWalkProperties : IComponentData , IEnableableComponent
     {

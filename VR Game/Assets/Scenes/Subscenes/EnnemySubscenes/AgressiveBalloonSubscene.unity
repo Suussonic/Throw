@@ -169,7 +169,7 @@ MonoBehaviour:
   numberSpawnPoints: 5
   spawnPrefab: {fileID: 5075769038003374131, guid: a677c860e5e25e34e8703f98233167a0, type: 3}
   randomSeed: 4578578
-  basicBalloonPrefab: {fileID: 8191408512233993261, guid: 4c9cf789532f3454d936551eb8e474d3, type: 3}
+  basicBalloonPrefab: {fileID: 7103793862340341019, guid: 5ecf49e5e9c897a45848aae183b1ce3d, type: 3}
   balloonSpawnRate: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
