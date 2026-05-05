@@ -904,6 +904,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5745337890916283883, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
+      propertyPath: homeSocket
+      value: 
+      objectReference: {fileID: 5633709845698193349}
     - target: {fileID: 6035127832294673593, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
       propertyPath: m_Name
       value: Shuriken
@@ -953,6 +957,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
+--- !u!114 &421753803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7482642443009696799, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
+  m_PrefabInstance: {fileID: 421753802}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
 --- !u!1001 &507667106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4558,11 +4573,30 @@ PrefabInstance:
       propertyPath: m_text
       value: Scoreeeeeee
       objectReference: {fileID: 0}
+    - target: {fileID: 3575526658647359772, guid: e40fb0abf0287f741b30b6ac7362e16a, type: 3}
+      propertyPath: m_StartingSelectedInteractable
+      value: 
+      objectReference: {fileID: 6785670002420711575}
+    - target: {fileID: 5014268760394423373, guid: e40fb0abf0287f741b30b6ac7362e16a, type: 3}
+      propertyPath: m_StartingSelectedInteractable
+      value: 
+      objectReference: {fileID: 421753803}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e40fb0abf0287f741b30b6ac7362e16a, type: 3}
+--- !u!114 &5633709845698193349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5014268760394423373, guid: e40fb0abf0287f741b30b6ac7362e16a, type: 3}
+  m_PrefabInstance: {fileID: 5633709845698193348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
 --- !u!1001 &6785670002420711574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4624,6 +4658,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5101e688c3df69409185c675c664f73, type: 3}
+--- !u!114 &6785670002420711575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8123509748467701186, guid: b5101e688c3df69409185c675c664f73, type: 3}
+  m_PrefabInstance: {fileID: 6785670002420711574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
 --- !u!114 &8246238370177118246 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3575526658647359772, guid: e40fb0abf0287f741b30b6ac7362e16a, type: 3}

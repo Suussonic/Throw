@@ -870,29 +870,19 @@ PrefabInstance:
     - {fileID: 5849765080480587857, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
     - {fileID: 4422659090696076827, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 732877344778758186, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 566900801}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
---- !u!1 &566900800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 732877344778758186, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
+--- !u!114 &566900801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5557328757000084385, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
   m_PrefabInstance: {fileID: 566900799}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &566900801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566900800}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ed776fd8a5a450691c5dc1b25672190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VrAction.changeLevel
-  levelToLoad: 0
 --- !u!1 &809544917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,6 +1297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3368038870639136258, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
+      propertyPath: m_StartingSelectedInteractable
+      value: 
+      objectReference: {fileID: 1460829311}
     - target: {fileID: 5992306493618037822, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13546851
@@ -1352,6 +1346,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
+--- !u!114 &873753173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8246238368369056969, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
+  m_PrefabInstance: {fileID: 873753172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
+--- !u!114 &873753174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3368038870639136258, guid: be9829455ddf32c4fafe84195ea476dc, type: 3}
+  m_PrefabInstance: {fileID: 873753172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
 --- !u!1 &876269248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,7 +2991,7 @@ PrefabInstance:
     - target: {fileID: 5745337890916283883, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
       propertyPath: homeSocket
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 873753174}
     - target: {fileID: 6035127832294673593, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
       propertyPath: m_Name
       value: Shuriken
@@ -3025,6 +3041,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
+--- !u!114 &1460829311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7482642443009696799, guid: 6548f7a06dd4cc84596b225ef12f78d7, type: 3}
+  m_PrefabInstance: {fileID: 1460829310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
 --- !u!1 &1619446959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,7 +3256,7 @@ PrefabInstance:
     - target: {fileID: 2692577816947952919, guid: b5101e688c3df69409185c675c664f73, type: 3}
       propertyPath: homeSocket
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 873753173}
     - target: {fileID: 5166504480212703574, guid: b5101e688c3df69409185c675c664f73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
