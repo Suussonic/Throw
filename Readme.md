@@ -2,6 +2,8 @@
 
 Projet Unity VR centré sur le lancer d'armes et la destruction de cibles ou de ballons dans plusieurs niveaux. Le projet utilise Unity 6, XR Interaction Toolkit, OpenXR/Meta XR et ECS pour une partie des ennemis.
 
+Vidéo Youtube : https://youtu.be/O8ZIQm0Cy50
+
 ## Aperçu
 
 Le joueur évolue dans une scène principale VR qui sert de menu et de hub, puis charge différents niveaux de jeu. Chaque niveau possède son propre score. Le score est calculé dans la scène active via `ScoreUI`, puis enregistré lors du changement de scène pour être réaffiché dans la scène principale grâce à `LevelScoreDisplay`.
