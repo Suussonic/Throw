@@ -2,7 +2,7 @@
 
 Projet Unity VR centré sur le lancer d'armes et la destruction de cibles ou de ballons dans plusieurs niveaux. Le projet utilise Unity 6, XR Interaction Toolkit, OpenXR/Meta XR et ECS pour une partie des ennemis.
 
-Vidéo Youtube : https://youtu.be/O8ZIQm0Cy50
+[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtu.be/O8ZIQm0Cy50)
 
 ## Aperçu
 
